@@ -36,3 +36,23 @@ test('Advanced search needs to load properly', async ({ page }) => {
   await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByText('Popular Keywords Advance')).toBeVisible();
   await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('link', { name: 'Advance' })).toBeVisible();
 })
+
+
+// All 3 items Search Functionility should be work properly
+
+// 1
+
+test.only('Search Functionility should be work properly', async ({ page }) => {
+
+  await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).click()
+  await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).fill('home');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).press('Backspace');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-c49ccf4').getByRole('link', { name: 'Home CONTENT ELEMENTS (22)' }).click();
+
+
+})
+
+
+// await page.pause()
