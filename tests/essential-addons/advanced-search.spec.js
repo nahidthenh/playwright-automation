@@ -33,8 +33,9 @@ test('Advanced search needs to load properly', async ({ page }) => {
   await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByPlaceholder('Enter Search Keyword 3')).toBeVisible();
   await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('button', { name: 'search 3' })).toBeVisible();
   await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('combobox')).toBeVisible();
-  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByText('Popular Keywords Advance')).toBeVisible();
-  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('link', { name: 'Advance' })).toBeVisible();
+  // await page.pause()
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('heading', { name: 'Popular Keywords' })).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('link', { name: 'Advance', exact: true })).toBeVisible();
 })
 
 
