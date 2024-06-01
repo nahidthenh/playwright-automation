@@ -1,19 +1,38 @@
-// @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+// Disable TimeOut 
+// test.setTimeout(0);
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test.beforeEach(async ({ page }) => {
+  await page.goto('https://eael.site/advanced-search/');
+})
+
+test.afterEach(async ({ page }) => {
+  await page.close();
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+// All 3 items items should be visible properly 
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+test('Advanced search needs to load properly', async ({ page }) => {
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+  // 1
+
+  await expect.soft(page.getByRole('heading', { name: 'Stunning Advanced Live Search' })).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword')).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-c49ccf4').getByRole('button', { name: 'search' })).toBeVisible()
+
+  // 2
+
+  await expect.soft(page.getByRole('heading', { name: 'Customize To Match Your Site Aesthetics' })).toBeVisible()
+  await expect.soft(page.locator('#eael-advanced-search-widget-d1bda42').getByPlaceholder('Enter Search Keyword 2')).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-d1bda42').getByRole('button', { name: 'search 2' })).toBeVisible();
+
+  // 3
+
+  await expect.soft(page.getByRole('heading', { name: 'Allow Users To Search With Category Tags' })).toBeVisible()
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByPlaceholder('Enter Search Keyword 3')).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('button', { name: 'search 3' })).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('combobox')).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByText('Popular Keywords Advance')).toBeVisible();
+  await expect.soft(page.locator('#eael-advanced-search-widget-578f58e').getByRole('link', { name: 'Advance' })).toBeVisible();
+})
