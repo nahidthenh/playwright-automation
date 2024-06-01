@@ -42,17 +42,42 @@ test('Advanced search needs to load properly', async ({ page }) => {
 
 // 1
 
-test.only('Search Functionility should be work properly', async ({ page }) => {
+test('Search Functionility should be work properly', async ({ page }) => {
 
-  await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).click()
+  await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).click();
   await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).fill('home');
   await page.waitForTimeout(1000);
   await page.locator('#eael-advanced-search-widget-c49ccf4').getByPlaceholder('Enter Search Keyword', { exact: true }).press('Backspace');
   await page.waitForTimeout(1000);
   await page.locator('#eael-advanced-search-widget-c49ccf4').getByRole('link', { name: 'Home CONTENT ELEMENTS (22)' }).click();
-
+  await expect.soft(page.getByRole('heading', { name: 'CONTENT ELEMENTS (22)' })).toBeVisible();
 
 })
 
+// 2
 
-// await page.pause()
+test('Search Functionility should be work properly 2', async ({ page }) => {
+
+  await page.locator('#eael-advanced-search-widget-d1bda42').getByPlaceholder('Enter Search Keyword 2', { exact: true }).click();
+  await page.locator('#eael-advanced-search-widget-d1bda42').getByPlaceholder('Enter Search Keyword 2', { exact: true }).fill('advanced tooltip');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-d1bda42').getByPlaceholder('Enter Search Keyword 2', { exact: true }).press('Backspace');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-d1bda42').getByRole('link', { name: 'Advanced Tooltip Click Effect' }).click();
+  await expect.soft(page.getByRole('heading', { name: 'Advanced Tooltip' })).toBeVisible();
+
+})
+
+// 3
+
+test('Search Functionility should be work properly 3', async ({ page }) => {
+
+  await page.locator('#eael-advanced-search-widget-578f58e').getByPlaceholder('Enter Search Keyword 3', { exact: true }).click();
+  await page.locator('#eael-advanced-search-widget-578f58e').getByPlaceholder('Enter Search Keyword 3', { exact: true }).fill('how to');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-578f58e').getByPlaceholder('Enter Search Keyword 3', { exact: true }).press('Backspace');
+  await page.waitForTimeout(1000);
+  await page.locator('#eael-advanced-search-widget-578f58e').getByRole('link', { name: 'How To Easily Start Online Garden Plant Store Website With Elementor Ready Template You can now create an appealing garden plant store website using the complete Greenzone Elementor template pack by Templately without coding for free.', exact: true }).click();
+  await expect.soft(page.getByRole('heading', { name: 'Easy & Convenient To Reach Out Targeted Audiences' })).toBeVisible();
+
+})
